@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from "react";
 import './App.css';
+// import Clicker from "./Clicker"
+import Statemaniplating from "./Statemaniplating";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component{
+state = {
+    person: [
+      {name: "raheel siddiqui" , age: 24},
+      {name: "Tabish Khan" , age: 23},
+      {name: "Hammad Khan" , age: 22}
+    ]
 }
 
-export default App;
+  changehandler = () =>{
+
+    const addinfo = {name: "Salman" , age: 18}
+    let addUser = [...this.state.person, addinfo];
+    this.setState({
+      person : addUser
+    })
+
+  }
+  render(){
+
+    return(
+      <div className="App">
+        <button onClick={this.changehandler}>Switch Name</button>
+      {this.state.person.map((person , index) => <Statemaniplating name={person.name} age={person.age}/>)}
+      </div>
+      
+    );
+  }
+}
